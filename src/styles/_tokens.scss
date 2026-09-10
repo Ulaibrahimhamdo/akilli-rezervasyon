@@ -1,0 +1,31 @@
+:root {
+    // Semantik renkler (durum renkleri)
+    --success-bg: #14532D;
+    --success-text: #4ADE80;
+    --danger-bg: #7F1D1D;
+    --danger-text: #F87171;
+    --warning-bg: #78350F;
+    --warning-text: #FBBF24;
+    --accent-bg: #1E3A8A;
+    --accent-text: #60A5FA;
+    --accent-solid: #2563EB;
+
+    // Nötr tonlar
+    --neutral-bg-page: #0B0E14;
+    --neutral-bg-card: #131722;
+    --neutral-border: #232837;
+    --neutral-border-strong: #333A4A;
+    --neutral-text-primary: #F5F6F8;
+    --neutral-text-secondary: #A0A7B4;
+    --neutral-text-muted: #6B7280;
+
+    // Rol rozetleri / avatar renkleri
+    --role-student-bg: #1E3A8A;
+    --role-student-text: #60A5FA;
+    --role-academic-bg: #134E4A;
+    --role-academic-text: #2DD4BF;
+    --role-manager-bg: #78350F;
+    --role-manager-text: #FBBF24;
+    --role-admin-bg: #7F1D1D;
+    --role-admin-text: #F87171;
+}
