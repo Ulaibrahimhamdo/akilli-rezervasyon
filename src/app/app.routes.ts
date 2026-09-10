@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
+import { roleGuard } from './core/guards/role-guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,11 +17,21 @@ export const routes: Routes = [
     { path: 'notifications', canActivate: [authGuard], loadComponent: () => import('./features/notifications/notifications').then(m => m.Notifications) },
     { path: 'profile', canActivate: [authGuard], loadComponent: () => import('./features/profile/profile').then(m => m.Profile) },
 
-    // Yönetici Paneli (korumalı)
-    { path: 'manager-panel', canActivate: [authGuard], loadComponent: () => import('./features/manager-panel/manager-panel').then(m => m.ManagerPanel) },
+    // Yönetici Paneli (korumalı + sadece manager rolü)
+    {
+        path: 'manager-panel',
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['manager'] },
+        loadComponent: () => import('./features/manager-panel/manager-panel').then(m => m.ManagerPanel)
+    },
 
-    // Admin Paneli (korumalı)
-    { path: 'admin-panel', canActivate: [authGuard], loadComponent: () => import('./features/admin-panel/admin-panel').then(m => m.AdminPanel) },
+    // Admin Paneli (korumalı + sadece admin rolü)
+    {
+        path: 'admin-panel',
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['admin'] },
+        loadComponent: () => import('./features/admin-panel/admin-panel').then(m => m.AdminPanel)
+    },
 
     { path: '**', redirectTo: 'login' }
 ];
