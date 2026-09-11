@@ -1,0 +1,15 @@
+/**
+ * @description app-card component'inin stilleri.
+ * _tokens.scss'teki CSS degiskenleri uygular.
+ */
+
+.app-card {
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--neutral-bg-card);
+    border: 1px solid var(--neutral-border);
+
+    &.modal-padding {
+        padding: 24px;
+    }
+}
