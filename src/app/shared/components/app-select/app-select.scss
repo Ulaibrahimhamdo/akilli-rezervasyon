@@ -1,0 +1,27 @@
+/**
+ * @description app-select component'inin stilleri.
+ * input/base'in dropdown varyanti tanimini _tokens.scss'teki CSS degiskenlerinden uygular.
+ */
+
+.app-select {
+    width: 280px;
+    height: 40px;
+    padding-inline: 12px;
+    border-radius: 8px;
+    background: var(--neutral-bg-page);
+    border: 1px solid var(--neutral-border);
+    color: var(--neutral-text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+        border-color: var(--accent-solid);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
