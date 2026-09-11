@@ -1,0 +1,43 @@
+/**
+ * @description app-button component'inin stilleri.
+ * (primary/secondary/danger/success) _tokens.scss'teki CSS degiskenleri uygular.
+ */
+
+.app-button {
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: opacity 0.2s ease;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &.primary {
+        background: var(--accent-solid);
+        color: #FFFFFF;
+    }
+
+    &.secondary {
+        background: var(--neutral-bg-card);
+        border-color: var(--neutral-border-strong);
+        color: var(--neutral-text-primary);
+    }
+
+    &.danger {
+        background: var(--neutral-bg-card);
+        border-color: var(--danger-text);
+        color: var(--danger-text);
+    }
+
+    &.success {
+        background: var(--neutral-bg-card);
+        border-color: var(--success-text);
+        color: var(--success-text);
+    }
+}
