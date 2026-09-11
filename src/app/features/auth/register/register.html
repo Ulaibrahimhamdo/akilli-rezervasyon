@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="register-page">
+    <div class="register-card">
+        <h1>Kayıt Ol</h1>
+        <p class="subtitle">@bingol.edu.tr uzantılı e-posta adresinizle kayıt olun</p>
+
+        <form (ngSubmit)="onSubmit()">
+            <app-input placeholder="Ad Soyad" [(value)]="adSoyad"></app-input>
+
+            <app-input type="email" placeholder="ornek@bingol.edu.tr" [(value)]="email"></app-input>
+
+            <app-input type="tel" placeholder="Telefon numaranız" [(value)]="telefon"></app-input>
+
+            <app-input type="password" placeholder="Şifre" [(value)]="password"></app-input>
+
+            <app-input type="password" placeholder="Şifre (tekrar)" [(value)]="passwordConfirm"></app-input>
+
+            <label class="kvkk-label">
+                <input type="checkbox" [(ngModel)]="kvkkAccepted" name="kvkk" />
+                KVKK metnini okudum ve kabul ediyorum.
+            </label>
+
+            @if (errorMessage()) {
+            <p class="error-message">{{ errorMessage() }}</p>
+            }
+
+            <app-button type="submit" variant="primary" [disabled]="isLoading()">
+                {{ isLoading() ? 'Kayıt oluşturuluyor...' : 'Kayıt Ol' }}
+            </app-button>
+        </form>
+
+        <div class="register-links">
+            <a routerLink="/login">Zaten hesabın var mı? Giriş yap</a>
+        </div>
+    </div>
+</div>
