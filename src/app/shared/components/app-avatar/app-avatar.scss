@@ -1,0 +1,36 @@
+/**
+ * @description app-avatar component'inin stilleri.
+ * avatar tanimini ve rol rozeti renklerini _tokens.scss'teki CSS degiskenleri uzerinden uygular.
+ */
+
+.app-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    &.student {
+        background: var(--role-student-bg);
+        color: var(--role-student-text);
+    }
+
+    &.academic {
+        background: var(--role-academic-bg);
+        color: var(--role-academic-text);
+    }
+
+    &.manager {
+        background: var(--role-manager-bg);
+        color: var(--role-manager-text);
+    }
+
+    &.admin {
+        background: var(--role-admin-bg);
+        color: var(--role-admin-text);
+    }
+}
