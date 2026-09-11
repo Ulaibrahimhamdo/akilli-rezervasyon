@@ -12,7 +12,7 @@
     border: 1px solid var(--neutral-border);
     color: var(--neutral-text-primary);
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: var(--font-size-body);
     cursor: pointer;
 
     &:focus {
