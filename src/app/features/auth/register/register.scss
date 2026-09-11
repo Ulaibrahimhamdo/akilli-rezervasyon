@@ -19,14 +19,15 @@
     border: 1px solid var(--neutral-border);
 
     h1 {
-        font-size: 24px;
-        font-weight: 700;
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
         color: var(--neutral-text-primary);
         margin: 0 0 8px 0;
     }
 
     .subtitle {
-        font-size: 13px;
+        font-size: var(--font-size-body-secondary);
+        font-weight: var(--font-weight-body-secondary);
         color: var(--neutral-text-secondary);
         margin: 0 0 24px 0;
     }
@@ -49,13 +50,13 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 13px;
+        font-size: var(--font-size-body-secondary);
         color: var(--neutral-text-secondary);
         cursor: pointer;
     }
 
     .error-message {
-        font-size: 13px;
+        font-size: var(--font-size-body-secondary);
         color: var(--danger-text);
         margin: 0;
     }
@@ -67,7 +68,7 @@
         margin-top: 20px;
 
         a {
-            font-size: 13px;
+            font-size: var(--font-size-body-secondary);
             color: var(--accent-text);
             text-decoration: none;
 

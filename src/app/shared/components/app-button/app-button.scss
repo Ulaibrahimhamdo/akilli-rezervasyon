@@ -7,8 +7,8 @@
     padding: 12px 20px;
     border-radius: 10px;
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-size-button);
+    font-weight: var(--font-weight-button);
     cursor: pointer;
     border: 1px solid transparent;
     transition: opacity 0.2s ease;
