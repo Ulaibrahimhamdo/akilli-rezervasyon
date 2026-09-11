@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div class="login-page">
+    <div class="login-card">
+        <h1>Akıllı Rezervasyon</h1>
+        <p class="subtitle">@bingol.edu.tr uzantılı e-posta adresinizle giriş yapın</p>
+
+        <form (ngSubmit)="onSubmit()">
+            <app-input type="email" placeholder="ornek@bingol.edu.tr" [(value)]="email"></app-input>
+
+            <app-input type="password" placeholder="Şifreniz" [(value)]="password"></app-input>
+
+            @if (errorMessage()) {
+            <p class="error-message">{{ errorMessage() }}</p>
+            }
+
+            <app-button type="submit" variant="primary" [disabled]="isLoading()">
+                {{ isLoading() ? 'Giriş yapılıyor...' : 'Giriş Yap' }}
+            </app-button>
+        </form>
+
+        <div class="login-links">
+            <a routerLink="/forgot-password">Şifremi unuttum</a>
+            <a routerLink="/register">Hesabın yok mu? Kayıt ol</a>
+        </div>
+    </div>
+</div>
