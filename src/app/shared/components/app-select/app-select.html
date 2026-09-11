@@ -1,1 +1,6 @@
-<p>app-select works!</p>
+<select class="app-select" [value]="value" [disabled]="disabled" (change)="onChange($event)">
+    <option value="" disabled selected hidden>{{ placeholder }}</option>
+    @for (option of options; track option.value) {
+    <option [value]="option.value">{{ option.label }}</option>
+    }
+</select>
