@@ -1,0 +1,77 @@
+/**
+ * @description Bildirimler sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.notifications-page {
+    padding: 24px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.notifications-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0;
+    }
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--neutral-border);
+}
+
+.filter-tab {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: var(--neutral-text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-body);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+
+    &.active {
+        color: var(--accent-text);
+        border-bottom-color: var(--accent-solid);
+    }
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body-secondary);
+    padding: 40px 0;
+}
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.notification-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.notification-message {
+    font-size: var(--font-size-body);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+
+    &.unread {
+        color: var(--neutral-text-primary);
+        font-weight: var(--font-weight-label);
+    }
+}

@@ -1,1 +1,38 @@
-<p>notifications works!</p>
+<div class="notifications-page">
+    <div class="notifications-header">
+        <h1>Bildirimler</h1>
+        <app-button variant="secondary" (buttonClick)="markAllAsRead()">
+            Tümünü okundu işaretle
+        </app-button>
+    </div>
+
+    <div class="filter-tabs">
+        <button class="filter-tab" [class.active]="activeFilter() === 'all'" (click)="setFilter('all')">
+            Tümü
+        </button>
+        <button class="filter-tab" [class.active]="activeFilter() === 'unread'" (click)="setFilter('unread')">
+            Okunmamış
+        </button>
+    </div>
+
+    @if (isLoading()) {
+    <p class="empty-state">Yükleniyor...</p>
+    } @else if (filteredNotifications.length === 0) {
+    <p class="empty-state">Gösterilecek bildirim yok.</p>
+    } @else {
+    <div class="notifications-list">
+        @for (notification of filteredNotifications; track notification.id) {
+        <app-card>
+            <div class="notification-row" (click)="markAsRead(notification)">
+                <app-badge [variant]="badgeVariant(notification.type)">
+                    {{ notification.type }}
+                </app-badge>
+                <p class="notification-message" [class.unread]="!notification.read">
+                    {{ notification.message }}
+                </p>
+            </div>
+        </app-card>
+        }
+    </div>
+    }
+</div>
