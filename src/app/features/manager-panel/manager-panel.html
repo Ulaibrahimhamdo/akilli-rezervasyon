@@ -1,1 +1,39 @@
-<p>manager-panel works!</p>
+<div class="manager-panel">
+    <aside class="sidebar">
+        @if (currentUser(); as user) {
+        <div class="sidebar-identity">
+            <app-avatar [role]="user.role" [name]="user.adSoyad"></app-avatar>
+            <div>
+                <p class="sidebar-name">{{ user.adSoyad }}</p>
+                <p class="sidebar-role">Yönetici</p>
+            </div>
+        </div>
+        }
+
+        <nav class="sidebar-nav">
+            <button class="sidebar-link" [class.active]="activeSection() === 'requests'"
+                (click)="setSection('requests')">
+                Talep Yönetimi
+            </button>
+            <button class="sidebar-link" [class.active]="activeSection() === 'resources'"
+                (click)="setSection('resources')">
+                Bölüm Kaynakları Durumu
+            </button>
+            <a class="sidebar-link" routerLink="/notifications">
+                Bildirimler
+                @if (unreadCount() > 0) {
+                <span class="badge-count">{{ unreadCount() }}</span>
+                }
+            </a>
+            <a class="sidebar-link" routerLink="/profile">Profil</a>
+        </nav>
+    </aside>
+
+    <main class="panel-content">
+        @if (activeSection() === 'requests') {
+        <p class="placeholder-text">Talep Yönetimi (yakında)</p>
+        } @else {
+        <p class="placeholder-text">Bölüm Kaynakları Durumu (yakında)</p>
+        }
+    </main>
+</div>

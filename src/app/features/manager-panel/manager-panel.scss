@@ -1,0 +1,88 @@
+/**
+ * @description Yonetici Paneli kabugunun stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.manager-panel {
+    display: flex;
+    min-height: 100vh;
+    background: var(--neutral-bg-page);
+}
+
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--neutral-bg-card);
+    border-right: 1px solid var(--neutral-border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar-identity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-name {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-label);
+    color: var(--neutral-text-primary);
+    margin: 0;
+}
+
+.sidebar-role {
+    font-size: var(--font-size-caption);
+    color: var(--role-manager-text);
+    margin: 0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: var(--neutral-text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-body);
+    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+        background: var(--neutral-bg-page);
+    }
+
+    &.active {
+        background: var(--accent-bg);
+        color: var(--accent-text);
+    }
+}
+
+.badge-count {
+    background: var(--danger-text);
+    color: #FFFFFF;
+    font-size: var(--font-size-caption);
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.panel-content {
+    flex: 1;
+    padding: 24px;
+}
+
+.placeholder-text {
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body);
+}

@@ -1,2 +1,12 @@
 @use 'styles/tokens';
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--neutral-bg-page);
+    color: var(--neutral-text-primary);
+    font-family: 'Inter', sans-serif;
+}
+
 /* You can add global styles to this file, and also import other style files */
