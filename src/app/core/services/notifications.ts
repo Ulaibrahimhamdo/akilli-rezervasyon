@@ -40,6 +40,17 @@ export class Notifications {
     await updateDoc(doc(db, 'notifications', notificationId), { read: true });
   }
 
+  async getUnreadCount(userId: string): Promise<number> {
+    const notificationsRef = collection(db, 'notifications');
+    const q = query(
+      notificationsRef,
+      where('userId', '==', userId),
+      where('read', '==', false)
+    );
+    const snapshot = await getDocs(q);
+    return snapshot.size;
+  }
+
   async markAllAsRead(userId: string): Promise<void> {
     const notificationsRef = collection(db, 'notifications');
     const q = query(
