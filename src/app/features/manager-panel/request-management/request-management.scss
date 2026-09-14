@@ -1,0 +1,76 @@
+/**
+ * @description Talep Yonetimi sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.request-management {
+    padding: 24px;
+    max-width: 720px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0 0 20px 0;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body-secondary);
+    padding: 40px 0;
+}
+
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.request-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.request-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.request-purpose {
+    font-size: var(--font-size-body);
+    color: var(--neutral-text-primary);
+    margin: 0;
+    flex: 1;
+}
+
+.request-date {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+}
+
+.request-actions,
+.reject-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.reject-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    app-input {
+        width: 100%;
+    }
+}
+
+.error-message {
+    font-size: var(--font-size-body-secondary);
+    color: var(--danger-text);
+    margin: 0;
+}
