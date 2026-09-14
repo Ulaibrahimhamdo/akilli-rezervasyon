@@ -1,1 +1,41 @@
-<p>request-management works!</p>
+<div class="request-management">
+    <h1>Talep Yönetimi</h1>
+
+    @if (isLoading()) {
+    <p class="empty-state">Yükleniyor...</p>
+    } @else if (pendingBookings().length === 0) {
+    <p class="empty-state">Bekleyen talep yok.</p>
+    } @else {
+    <div class="requests-list">
+        @for (booking of pendingBookings(); track booking.id) {
+        <app-card>
+            <div class="request-row">
+                <div class="request-info">
+                    <app-badge variant="warning">Bekliyor</app-badge>
+                    <p class="request-purpose">{{ booking.purpose }}</p>
+                    <p class="request-date">{{ booking.date }}</p>
+                </div>
+
+                @if (openRejectFormFor() === booking.id) {
+                <div class="reject-form">
+                    <app-input placeholder="Reddetme gerekçesi" [(value)]="rejectReason"></app-input>
+                    @if (rejectErrorMessage()) {
+                    <p class="error-message">{{ rejectErrorMessage() }}</p>
+                    }
+                    <div class="reject-actions">
+                        <app-button variant="secondary" (buttonClick)="cancelRejectForm()">Vazgeç</app-button>
+                        <app-button variant="danger" (buttonClick)="confirmReject(booking)">Reddi Onayla</app-button>
+                    </div>
+                </div>
+                } @else {
+                <div class="request-actions">
+                    <app-button variant="success" (buttonClick)="approve(booking)">Onayla</app-button>
+                    <app-button variant="danger" (buttonClick)="openRejectForm(booking)">Reddet</app-button>
+                </div>
+                }
+            </div>
+        </app-card>
+        }
+    </div>
+    }
+</div>
