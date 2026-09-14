@@ -4,8 +4,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  updatePassword,
 } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth as firebaseAuth, db } from '../firebase.config';
 import { User, UserRole } from '../../models/user.model';
 
@@ -44,5 +45,24 @@ export class Auth {
 
   async resetPassword(email: string): Promise<void> {
     await sendPasswordResetEmail(firebaseAuth, email);
+  }
+  async getUserProfile(uid: string): Promise<User | null> {
+    const userDoc = await getDoc(doc(db, 'users', uid));
+    if (!userDoc.exists()) {
+      return null;
+    }
+    return userDoc.data() as User;
+  }
+
+  async updateUserProfile(uid: string, data: Partial<Pick<User, 'adSoyad' | 'telefon'>>): Promise<void> {
+    await updateDoc(doc(db, 'users', uid), data);
+  }
+
+  async changePassword(newPassword: string): Promise<void> {
+    const currentUser = firebaseAuth.currentUser;
+    if (!currentUser) {
+      throw new Error('Kullanıcı giriş yapmamış.');
+    }
+    await updatePassword(currentUser, newPassword);
   }
 }

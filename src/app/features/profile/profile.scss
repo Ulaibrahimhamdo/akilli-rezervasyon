@@ -1,0 +1,96 @@
+/**
+ * @description Profil ve Ayarlar sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.profile-page {
+    padding: 24px;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.loading-text {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    padding: 40px 0;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0;
+    }
+
+    .user-email {
+        font-size: var(--font-size-body-secondary);
+        color: var(--neutral-text-secondary);
+        margin: 0;
+    }
+}
+
+app-card {
+    h2 {
+        font-size: var(--font-size-heading-2);
+        font-weight: var(--font-weight-heading-2);
+        color: var(--neutral-text-primary);
+        margin: 0 0 16px 0;
+    }
+}
+
+.profile-form,
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    app-input {
+        width: 100%;
+    }
+}
+
+.save-message {
+    font-size: var(--font-size-body-secondary);
+    color: var(--success-text);
+    margin: 0;
+}
+
+.error-message,
+.passwordErrorMessage {
+    font-size: var(--font-size-body-secondary);
+    color: var(--danger-text);
+    margin: 0;
+}
+
+.success-message {
+    font-size: var(--font-size-body);
+    color: var(--success-text);
+    margin: 0 0 16px 0;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+
+    app-card {
+        width: 360px;
+    }
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
