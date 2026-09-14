@@ -1,1 +1,65 @@
-<p>profile works!</p>
+<div class="profile-page">
+    @if (isLoading()) {
+    <p class="loading-text">Yükleniyor...</p>
+    } @else if (currentUser(); as user) {
+    <div class="profile-header">
+        <app-avatar [role]="user.role" [name]="user.adSoyad"></app-avatar>
+        <div>
+            <h1>{{ user.adSoyad }}</h1>
+            <p class="user-email">{{ user.email }}</p>
+        </div>
+    </div>
+
+    <app-card>
+        <h2>Kişisel Bilgiler</h2>
+        <div class="profile-form">
+            <app-input placeholder="Ad Soyad" [(value)]="adSoyad"></app-input>
+            <app-input type="tel" placeholder="Telefon" [(value)]="telefon"></app-input>
+
+            @if (saveMessage()) {
+            <p class="save-message">{{ saveMessage() }}</p>
+            }
+
+            <app-button variant="primary" [disabled]="isSaving()" (buttonClick)="saveProfile()">
+                {{ isSaving() ? 'Kaydediliyor...' : 'Kaydet' }}
+            </app-button>
+        </div>
+    </app-card>
+
+    <app-card>
+        <h2>Şifre</h2>
+        <app-button variant="secondary" (buttonClick)="openPasswordModal()">
+            Şifremi Değiştir
+        </app-button>
+    </app-card>
+
+    <app-button variant="danger" (buttonClick)="logout()">Çıkış Yap</app-button>
+    }
+
+    @if (passwordModalState() !== 'closed') {
+    <div class="modal-overlay">
+        <app-card [modalPadding]="true">
+            <h2>Şifre Değiştir</h2>
+
+            @if (passwordModalState() === 'success') {
+            <p class="success-message">Şifreniz başarıyla değiştirildi.</p>
+            <app-button variant="primary" (buttonClick)="closePasswordModal()">Kapat</app-button>
+            } @else {
+            <div class="modal-form">
+                <app-input type="password" placeholder="Yeni şifre" [(value)]="newPassword"></app-input>
+                <app-input type="password" placeholder="Yeni şifre (tekrar)" [(value)]="newPasswordConfirm"></app-input>
+
+                @if (passwordModalState() === 'error') {
+                <p class="error-message">{{ passwordErrorMessage() }}</p>
+                }
+
+                <div class="modal-actions">
+                    <app-button variant="secondary" (buttonClick)="closePasswordModal()">Vazgeç</app-button>
+                    <app-button variant="primary" (buttonClick)="submitPasswordChange()">Değiştir</app-button>
+                </div>
+            </div>
+            }
+        </app-card>
+    </div>
+    }
+</div>
