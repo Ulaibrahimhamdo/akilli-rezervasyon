@@ -37,8 +37,17 @@ export const routes: Routes = [
         path: 'admin-panel',
         canActivate: [authGuard, roleGuard],
         data: { roles: ['admin'] },
-        loadComponent: () => import('./features/admin-panel/admin-panel').then(m => m.AdminPanel)
+        loadComponent: () => import('./features/admin-panel/admin-panel').then(m => m.AdminPanel),
+        children: [
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: 'dashboard', loadComponent: () => import('./features/admin-panel/dashboard/dashboard').then(m => m.Dashboard) },
+            { path: 'resources', loadComponent: () => import('./features/admin-panel/resources/resources').then(m => m.Resources) },
+            { path: 'recurring-schedule', loadComponent: () => import('./features/admin-panel/recurring-schedule/recurring-schedule').then(m => m.RecurringSchedule) },
+            { path: 'users', loadComponent: () => import('./features/admin-panel/users/users').then(m => m.Users) },
+            { path: 'system-settings', loadComponent: () => import('./features/admin-panel/system-settings/system-settings').then(m => m.SystemSettings) },
+            { path: 'notifications', loadComponent: () => import('./features/notifications/notifications').then(m => m.Notifications) },
+            { path: 'profile', loadComponent: () => import('./features/profile/profile').then(m => m.Profile) },
+        ]
     },
-
     { path: '**', redirectTo: 'login' }
 ];
