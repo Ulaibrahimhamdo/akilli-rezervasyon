@@ -22,7 +22,14 @@ export const routes: Routes = [
         path: 'manager-panel',
         canActivate: [authGuard, roleGuard],
         data: { roles: ['manager'] },
-        loadComponent: () => import('./features/manager-panel/manager-panel').then(m => m.ManagerPanel)
+        loadComponent: () => import('./features/manager-panel/manager-panel').then(m => m.ManagerPanel),
+        children: [
+            { path: '', redirectTo: 'requests', pathMatch: 'full' },
+            { path: 'requests', loadComponent: () => import('./features/manager-panel/request-management/request-management').then(m => m.RequestManagement) },
+            { path: 'resources', loadComponent: () => import('./features/manager-panel/resource-status/resource-status').then(m => m.ResourceStatus) },
+            { path: 'notifications', loadComponent: () => import('./features/notifications/notifications').then(m => m.Notifications) },
+            { path: 'profile', loadComponent: () => import('./features/profile/profile').then(m => m.Profile) },
+        ]
     },
 
     // Admin Paneli (korumalı + sadece admin rolü)

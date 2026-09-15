@@ -1,5 +1,5 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../core/firebase.config';
 import { Auth } from '../../core/services/auth';
@@ -10,8 +10,6 @@ import { User } from '../../models/user.model';
 import { AppAvatar } from '../../shared/components/app-avatar/app-avatar';
 import { LockModal, UrgentBookingInfo } from './lock-modal/lock-modal';
 import { RejectModal } from './reject-modal/reject-modal';
-import { ResourceStatus } from './resource-status/resource-status';
-import { RequestManagement } from './request-management/request-management';
 
 /**
  * @description Yonetici Paneli ana kabugu.
@@ -21,7 +19,7 @@ import { RequestManagement } from './request-management/request-management';
  */
 @Component({
   selector: 'app-manager-panel',
-  imports: [RouterLink, AppAvatar, LockModal, RejectModal, ResourceStatus, RequestManagement],
+  imports: [RouterLink, RouterOutlet, RouterLinkActive, AppAvatar, LockModal, RejectModal],
   templateUrl: './manager-panel.html',
   styleUrl: './manager-panel.scss',
 })
@@ -33,7 +31,6 @@ export class ManagerPanel implements OnInit {
 
   currentUser = signal<User | null>(null);
   unreadCount = signal(0);
-  activeSection = signal<'requests' | 'resources'>('requests');
 
   urgentBookings = signal<UrgentBookingInfo[]>([]);
   urgentIndex = signal(0);
@@ -99,9 +96,5 @@ export class ManagerPanel implements OnInit {
     );
     this.urgentBookings.set(remaining);
     this.urgentIndex.set(0);
-  }
-
-  setSection(section: 'requests' | 'resources'): void {
-    this.activeSection.set(section);
   }
 }
