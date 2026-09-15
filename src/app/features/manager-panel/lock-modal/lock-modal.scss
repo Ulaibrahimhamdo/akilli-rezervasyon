@@ -1,0 +1,106 @@
+/**
+ * @description Kilit Modali'nin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.lock-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+
+    app-card {
+        width: 420px;
+
+        >* {
+            border: 2px solid var(--danger-text);
+            border-radius: 12px;
+        }
+    }
+}
+
+.lock-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    h2 {
+        font-size: var(--font-size-heading-2);
+        font-weight: var(--font-weight-heading-2);
+        color: var(--neutral-text-primary);
+        margin: 0 0 4px 0;
+    }
+}
+
+.warning-icon {
+    font-size: 24px;
+}
+
+.urgency-text {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-label);
+    color: var(--danger-text);
+    margin: 0;
+}
+
+.lock-description {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0 0 16px 0;
+}
+
+.requester-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.requester-info {
+    flex: 1;
+}
+
+.requester-name {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-label);
+    color: var(--neutral-text-primary);
+    margin: 0;
+}
+
+.requester-meta {
+    font-size: var(--font-size-caption);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+}
+
+.booking-location {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0 0 4px 0;
+}
+
+.booking-purpose {
+    font-size: var(--font-size-body);
+    color: var(--neutral-text-primary);
+    margin: 0;
+}
+
+.lock-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+
+    app-button {
+        flex: 1;
+    }
+}
+
+.counter-text {
+    text-align: center;
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 12px 0 0 0;
+}
