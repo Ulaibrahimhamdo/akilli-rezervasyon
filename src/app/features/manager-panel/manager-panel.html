@@ -31,9 +31,9 @@
 
     <main class="panel-content">
         @if (activeSection() === 'requests') {
-        <p class="placeholder-text">Talep Yönetimi (yakında)</p>
+        <app-request-management></app-request-management>
         } @else {
-        <p class="placeholder-text">Bölüm Kaynakları Durumu (yakında)</p>
+        <app-resource-status></app-resource-status>
         }
     </main>
 </div>

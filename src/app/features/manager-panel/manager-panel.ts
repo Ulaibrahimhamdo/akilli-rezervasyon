@@ -10,6 +10,8 @@ import { User } from '../../models/user.model';
 import { AppAvatar } from '../../shared/components/app-avatar/app-avatar';
 import { LockModal, UrgentBookingInfo } from './lock-modal/lock-modal';
 import { RejectModal } from './reject-modal/reject-modal';
+import { ResourceStatus } from './resource-status/resource-status';
+import { RequestManagement } from './request-management/request-management';
 
 /**
  * @description Yonetici Paneli ana kabugu.
@@ -19,7 +21,7 @@ import { RejectModal } from './reject-modal/reject-modal';
  */
 @Component({
   selector: 'app-manager-panel',
-  imports: [RouterLink, AppAvatar, LockModal, RejectModal],
+  imports: [RouterLink, AppAvatar, LockModal, RejectModal, ResourceStatus, RequestManagement],
   templateUrl: './manager-panel.html',
   styleUrl: './manager-panel.scss',
 })
