@@ -5,7 +5,7 @@ import { Booking } from '../../../models/booking.model';
 import { AppCard } from '../../../shared/components/app-card/app-card';
 import { AppButton } from '../../../shared/components/app-button/app-button';
 import { AppBadge } from '../../../shared/components/app-badge/app-badge';
-import { AppInput } from '../../../shared/components/app-input/app-input';
+import { RejectModal } from '../reject-modal/reject-modal';
 
 /**
  * @description Talep Yonetimi sayfasi.
@@ -15,7 +15,7 @@ import { AppInput } from '../../../shared/components/app-input/app-input';
  */
 @Component({
   selector: 'app-request-management',
-  imports: [FormsModule, AppCard, AppButton, AppBadge, AppInput],
+  imports: [AppCard, AppButton, AppBadge, RejectModal],
   templateUrl: './request-management.html',
   styleUrl: './request-management.scss',
 })
@@ -25,10 +25,8 @@ export class RequestManagement implements OnInit {
   pendingBookings = signal<Booking[]>([]);
   isLoading = signal(true);
 
-  /** Hangi talebin reddet formu acik, o talebin id'sini tutar; hicbiri acik degilse null. */
-  openRejectFormFor = signal<string | null>(null);
-  rejectReason = '';
-  rejectErrorMessage = signal('');
+  rejectingBookingId = signal<string | null>(null);
+  rejectServiceError = signal('');
 
   ngOnInit(): void {
     this.loadPendingBookings();
@@ -46,24 +44,28 @@ export class RequestManagement implements OnInit {
     await this.loadPendingBookings();
   }
 
-  openRejectForm(booking: Booking): void {
-    this.openRejectFormFor.set(booking.id);
-    this.rejectReason = '';
-    this.rejectErrorMessage.set('');
+  openRejectModal(booking: Booking): void {
+    this.rejectingBookingId.set(booking.id);
+    this.rejectServiceError.set('');
   }
 
-  cancelRejectForm(): void {
-    this.openRejectFormFor.set(null);
+  closeRejectModal(): void {
+    this.rejectingBookingId.set(null);
   }
 
-  async confirmReject(booking: Booking): Promise<void> {
-    if (!this.rejectReason.trim()) {
-      this.rejectErrorMessage.set('Gerekçe alanı zorunludur.');
+  async handleRejectConfirm(reason: string): Promise<void> {
+    const bookingId = this.rejectingBookingId();
+    const booking = this.pendingBookings().find((b) => b.id === bookingId);
+    if (!booking) {
       return;
     }
 
-    await this.bookingsService.rejectBooking(booking.id, this.rejectReason, booking.userId);
-    this.openRejectFormFor.set(null);
-    await this.loadPendingBookings();
+    try {
+      await this.bookingsService.rejectBooking(booking.id, reason, booking.userId);
+      this.rejectingBookingId.set(null);
+      await this.loadPendingBookings();
+    } catch {
+      this.rejectServiceError.set('Reddetme işlemi başarısız oldu, tekrar deneyin.');
+    }
   }
 }

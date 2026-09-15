@@ -1,1 +1,21 @@
-<p>reject-modal works!</p>
+@if (open) {
+<div class="modal-overlay">
+    <app-card [modalPadding]="true">
+        <h2>Talebi Reddet</h2>
+        <p class="modal-description">Reddetme gerekçenizi yazın. Bu mesaj talep sahibine bildirim olarak iletilecek.</p>
+
+        <div class="modal-form">
+            <app-input placeholder="Reddetme gerekçesi" [(value)]="reason"></app-input>
+
+            @if (displayError) {
+            <p class="error-message">{{ displayError }}</p>
+            }
+
+            <div class="modal-actions">
+                <app-button variant="secondary" (buttonClick)="onCancel()">Vazgeç</app-button>
+                <app-button variant="danger" (buttonClick)="onConfirm()">Reddi Onayla</app-button>
+            </div>
+        </div>
+    </app-card>
+</div>
+}

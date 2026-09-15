@@ -16,26 +16,16 @@
                     <p class="request-date">{{ booking.date }}</p>
                 </div>
 
-                @if (openRejectFormFor() === booking.id) {
-                <div class="reject-form">
-                    <app-input placeholder="Reddetme gerekçesi" [(value)]="rejectReason"></app-input>
-                    @if (rejectErrorMessage()) {
-                    <p class="error-message">{{ rejectErrorMessage() }}</p>
-                    }
-                    <div class="reject-actions">
-                        <app-button variant="secondary" (buttonClick)="cancelRejectForm()">Vazgeç</app-button>
-                        <app-button variant="danger" (buttonClick)="confirmReject(booking)">Reddi Onayla</app-button>
-                    </div>
-                </div>
-                } @else {
                 <div class="request-actions">
                     <app-button variant="success" (buttonClick)="approve(booking)">Onayla</app-button>
-                    <app-button variant="danger" (buttonClick)="openRejectForm(booking)">Reddet</app-button>
+                    <app-button variant="danger" (buttonClick)="openRejectModal(booking)">Reddet</app-button>
                 </div>
-                }
             </div>
         </app-card>
         }
     </div>
     }
 </div>
+
+<app-reject-modal [open]="rejectingBookingId() !== null" [errorMessage]="rejectServiceError()"
+    (confirmReject)="handleRejectConfirm($event)" (cancel)="closeRejectModal()"></app-reject-modal>
