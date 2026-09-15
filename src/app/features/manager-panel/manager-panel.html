@@ -37,3 +37,11 @@
         }
     </main>
 </div>
+
+<app-lock-modal [urgentBooking]="currentUrgentBooking" [currentIndex]="urgentIndex() + 1"
+    [totalCount]="urgentBookings().length" (approve)="handleUrgentApprove($event)"
+    (reject)="openUrgentReject($event)"></app-lock-modal>
+
+<app-reject-modal [open]="rejectingUrgentBookingId() !== null" [errorMessage]="urgentRejectError()"
+    (confirmReject)="handleUrgentRejectConfirm($event)"
+    (cancel)="rejectingUrgentBookingId.set(null)"></app-reject-modal>

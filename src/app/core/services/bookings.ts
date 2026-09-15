@@ -6,6 +6,7 @@ import {
   orderBy,
   getDocs,
   doc,
+  getDoc,
   updateDoc,
   addDoc,
   Timestamp,
@@ -59,5 +60,80 @@ export class Bookings {
       createdAt: Timestamp.now(),
       relatedBookingId: bookingId,
     });
+  }
+  async getUrgentPendingBookings(thresholdHours: number): Promise<{
+    booking: Booking;
+    resourceName: string;
+    periodLabel: string;
+    requesterName: string;
+    requesterRoleLabel: string;
+    studentNumber: string | null;
+    hoursRemaining: number;
+  }[]> {
+    const pendingBookings = await this.getPendingBookings();
+
+    const periodsSnapshot = await getDocs(collection(db, 'periods'));
+    const periodsById = new Map(
+      periodsSnapshot.docs.map((d) => [d.id, d.data() as { label: string; order: number }])
+    );
+
+    const now = new Date();
+    const enriched: {
+      booking: Booking;
+      resourceName: string;
+      periodLabel: string;
+      requesterName: string;
+      requesterRoleLabel: string;
+      studentNumber: string | null;
+      hoursRemaining: number;
+    }[] = [];
+
+    for (const booking of pendingBookings) {
+      const bookingPeriods = booking.periodIds
+        .map((id) => periodsById.get(id))
+        .filter((p): p is { label: string; order: number } => !!p)
+        .sort((a, b) => a.order - b.order);
+
+      if (bookingPeriods.length === 0) {
+        continue;
+      }
+
+      const startTime = bookingPeriods[0].label.split('-')[0].trim();
+      const [hours, minutes] = startTime.split(':').map(Number);
+      const startDateTime = new Date(booking.date);
+      startDateTime.setHours(hours, minutes, 0, 0);
+
+      const hoursRemaining = (startDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
+
+      if (hoursRemaining > thresholdHours) {
+        continue;
+      }
+
+      const [resourceDoc, userDoc] = await Promise.all([
+        getDoc(doc(db, 'resources', booking.resourceId)),
+        getDoc(doc(db, 'users', booking.userId)),
+      ]);
+
+      const resourceName = resourceDoc.exists() ? (resourceDoc.data()['ad'] as string) : 'Bilinmeyen mekan';
+      const userData = userDoc.exists() ? userDoc.data() : null;
+      const requesterName = userData ? (userData['adSoyad'] as string) : 'Bilinmeyen kullanıcı';
+      const role = userData ? (userData['role'] as string) : '';
+      const email = userData ? (userData['email'] as string) : '';
+
+      const requesterRoleLabel = role === 'student' ? 'Öğrenci' : 'Akademisyen';
+      const studentNumber = role === 'student' ? email.split('@')[0] : null;
+
+      enriched.push({
+        booking,
+        resourceName,
+        periodLabel: bookingPeriods.map((p) => p.label).join(', '),
+        requesterName,
+        requesterRoleLabel,
+        studentNumber,
+        hoursRemaining,
+      });
+    }
+
+    return enriched.sort((a, b) => a.hoursRemaining - b.hoursRemaining);
   }
 }

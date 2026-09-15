@@ -1,1 +1,45 @@
-<p>lock-modal works!</p>
+@if (urgentBooking) {
+<div class="lock-overlay">
+    <app-card [modalPadding]="true">
+        <div class="lock-header">
+            <span class="warning-icon">⚠️</span>
+            <div>
+                <h2>Cevap bekleyen talep</h2>
+                <p class="urgency-text">{{ formatHours(urgentBooking.hoursRemaining) }} — süre dolmadan cevap verin</p>
+            </div>
+        </div>
+
+        <p class="lock-description">Bu talebe cevap vermeden sistemi kullanamazsınız.</p>
+
+        <app-card>
+            <div class="requester-row">
+                <app-avatar role="student" [name]="urgentBooking.requesterName"></app-avatar>
+                <div class="requester-info">
+                    <p class="requester-name">{{ urgentBooking.requesterName }}</p>
+                    <p class="requester-meta">
+                        {{ urgentBooking.requesterRoleLabel }}
+                        @if (urgentBooking.studentNumber) {
+                        · {{ urgentBooking.studentNumber }}
+                        }
+                    </p>
+                </div>
+                <app-badge variant="warning">Bekliyor</app-badge>
+            </div>
+
+            <p class="booking-location">{{ urgentBooking.resourceName }} · {{ urgentBooking.periodLabel }}</p>
+            <p class="booking-purpose">{{ urgentBooking.booking.purpose }}</p>
+        </app-card>
+
+        <div class="lock-actions">
+            <app-button variant="success" (buttonClick)="approve.emit(urgentBooking.booking.id)">
+                Onayla
+            </app-button>
+            <app-button variant="danger" (buttonClick)="reject.emit(urgentBooking.booking.id)">
+                Reddet
+            </app-button>
+        </div>
+
+        <p class="counter-text">{{ currentIndex }}/{{ totalCount }} bekleyen talep</p>
+    </app-card>
+</div>
+}
