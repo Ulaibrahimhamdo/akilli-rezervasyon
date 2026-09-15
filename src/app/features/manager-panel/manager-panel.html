@@ -11,30 +11,26 @@
         }
 
         <nav class="sidebar-nav">
-            <button class="sidebar-link" [class.active]="activeSection() === 'requests'"
-                (click)="setSection('requests')">
+            <a class="sidebar-link" routerLink="/manager-panel/requests" routerLinkActive="active">
                 Talep Yönetimi
-            </button>
-            <button class="sidebar-link" [class.active]="activeSection() === 'resources'"
-                (click)="setSection('resources')">
+            </a>
+            <a class="sidebar-link" routerLink="/manager-panel/resources" routerLinkActive="active">
                 Bölüm Kaynakları Durumu
-            </button>
-            <a class="sidebar-link" routerLink="/notifications">
+            </a>
+            <a class="sidebar-link" routerLink="/manager-panel/notifications" routerLinkActive="active">
                 Bildirimler
                 @if (unreadCount() > 0) {
                 <span class="badge-count">{{ unreadCount() }}</span>
                 }
             </a>
-            <a class="sidebar-link" routerLink="/profile">Profil</a>
+            <a class="sidebar-link" routerLink="/manager-panel/profile" routerLinkActive="active">
+                Profil
+            </a>
         </nav>
     </aside>
 
     <main class="panel-content">
-        @if (activeSection() === 'requests') {
-        <app-request-management></app-request-management>
-        } @else {
-        <app-resource-status></app-resource-status>
-        }
+        <router-outlet></router-outlet>
     </main>
 </div>
 
