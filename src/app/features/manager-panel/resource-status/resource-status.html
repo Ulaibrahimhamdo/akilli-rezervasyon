@@ -1,1 +1,24 @@
-<p>resource-status works!</p>
+<div class="resource-status-page">
+    <h1>Bölüm kaynakları durumu</h1>
+
+    @if (isLoading()) {
+    <p class="empty-state">Yükleniyor...</p>
+    } @else if (statuses().length === 0) {
+    <p class="empty-state">Henüz kayıtlı kaynak yok.</p>
+    } @else {
+    <div class="statuses-list">
+        @for (item of statuses(); track item.resource.id) {
+        <app-card>
+            <div class="status-row">
+                <span class="status-dot" [class]="item.statusColor"></span>
+                <div class="status-info">
+                    <p class="resource-name">{{ item.resource.ad }}</p>
+                    <p class="status-text">{{ item.statusText }}</p>
+                </div>
+                <p class="next-info">{{ item.nextInfoText }}</p>
+            </div>
+        </app-card>
+        }
+    </div>
+    }
+</div>

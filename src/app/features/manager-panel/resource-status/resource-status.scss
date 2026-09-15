@@ -1,0 +1,77 @@
+/**
+ * @description Bolum Kaynaklari Durumu sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.resource-status-page {
+    padding: 24px;
+    max-width: 720px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0 0 20px 0;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body-secondary);
+    padding: 40px 0;
+}
+
+.statuses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.status-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.red {
+        background: var(--danger-text);
+    }
+
+    &.yellow {
+        background: var(--warning-text);
+    }
+
+    &.green {
+        background: var(--success-text);
+    }
+}
+
+.status-info {
+    flex: 1;
+}
+
+.resource-name {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-label);
+    color: var(--neutral-text-primary);
+    margin: 0;
+}
+
+.status-text {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+}
+
+.next-info {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+    white-space: nowrap;
+}
