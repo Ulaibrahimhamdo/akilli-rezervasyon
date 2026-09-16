@@ -1,0 +1,36 @@
+/**
+ * @description Kaynagi Sil Modali'nin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+
+    app-card {
+        width: 360px;
+    }
+}
+
+h2 {
+    font-size: var(--font-size-heading-2);
+    font-weight: var(--font-weight-heading-2);
+    color: var(--neutral-text-primary);
+    margin: 0 0 12px 0;
+}
+
+.warning-text {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0 0 20px 0;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}

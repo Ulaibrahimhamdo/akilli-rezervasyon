@@ -1,1 +1,15 @@
-<p>delete-resource-modal works!</p>
+@if (resource) {
+<div class="modal-overlay">
+    <app-card [modalPadding]="true">
+        <h2>Kaynağı sil</h2>
+        <p class="warning-text">
+            {{ resource.ad }} kaynağını silmek üzeresiniz. Bu işlem geri alınamaz.
+        </p>
+
+        <div class="modal-actions">
+            <app-button variant="secondary" (buttonClick)="cancel.emit()">Vazgeç</app-button>
+            <app-button variant="danger" (buttonClick)="confirm.emit()">Evet, sil</app-button>
+        </div>
+    </app-card>
+</div>
+}

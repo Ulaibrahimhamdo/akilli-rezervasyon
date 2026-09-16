@@ -20,6 +20,12 @@ import { AppNotification } from '../../models/notification.model';
   providedIn: 'root',
 })
 export class Notifications {
+
+  /**
+   * 
+   * @param userId 
+   * @returns 
+   */
   async getUserNotifications(userId: string): Promise<AppNotification[]> {
     const notificationsRef = collection(db, 'notifications');
     const q = query(

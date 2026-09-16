@@ -17,9 +17,11 @@
 
     @if (isLoading()) {
     <p class="empty-state">Yükleniyor...</p>
-    } @else if (filteredNotifications.length === 0) {
+    } 
+    @else if (filteredNotifications.length === 0) {
     <p class="empty-state">Gösterilecek bildirim yok.</p>
-    } @else {
+    } 
+    @else {
     <div class="notifications-list">
         @for (notification of filteredNotifications; track notification.id) {
         <app-card>

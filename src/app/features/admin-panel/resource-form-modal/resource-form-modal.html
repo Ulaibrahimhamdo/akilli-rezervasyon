@@ -1,1 +1,33 @@
-<p>resource-form-modal works!</p>
+@if (open) {
+<div class="modal-overlay">
+    <app-card [modalPadding]="true">
+        <h2>{{ mode === 'edit' ? 'Kaynağı düzenle' : 'Yeni kaynak ekle' }}</h2>
+
+        <div class="modal-form">
+            <label class="field-label">Kaynak adı</label>
+            <app-input placeholder="Kaynak adı" [(value)]="ad"></app-input>
+
+            <label class="field-label">Kapasite</label>
+            <app-input type="text" placeholder="Kapasite" [value]="kapasite ? kapasite.toString() : ''"
+                (valueChange)="kapasite = $event ? +$event : null"></app-input>
+
+            <label class="field-label">Bina</label>
+            <app-select placeholder="Bina seçin" [options]="buildingOptions" [(value)]="bina"></app-select>
+
+            <label class="field-label">Kategori</label>
+            <app-select placeholder="Kategori seçin" [options]="categoryOptions" [(value)]="kategori"></app-select>
+
+            @if (mode === 'edit') {
+            <button class="delete-link" (click)="deleteRequested.emit()">Kaynağı sil</button>
+            }
+
+            <div class="modal-actions">
+                <app-button variant="secondary" (buttonClick)="cancel.emit()">Vazgeç</app-button>
+                <app-button variant="primary" (buttonClick)="onSave()">
+                    {{ mode === 'edit' ? 'Güncelle' : 'Kaydet' }}
+                </app-button>
+            </div>
+        </div>
+    </app-card>
+</div>
+}

@@ -1,0 +1,59 @@
+/**
+ * @description Kaynak Formu modali'nin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+
+    app-card {
+        width: 400px;
+    }
+}
+
+h2 {
+    font-size: var(--font-size-heading-2);
+    font-weight: var(--font-weight-heading-2);
+    color: var(--neutral-text-primary);
+    margin: 0 0 16px 0;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    app-input,
+    app-select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.field-label {
+    font-size: var(--font-size-caption);
+    color: var(--neutral-text-secondary);
+}
+
+.delete-link {
+    background: none;
+    border: none;
+    color: var(--danger-text);
+    font-size: var(--font-size-body-secondary);
+    cursor: pointer;
+    text-align: center;
+    padding: 8px 0;
+    margin-bottom: 4px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
