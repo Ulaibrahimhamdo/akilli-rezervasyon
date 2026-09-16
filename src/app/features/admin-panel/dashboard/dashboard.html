@@ -1,1 +1,49 @@
-<p>dashboard works!</p>
+<div class="dashboard-page">
+    <h1>Sistem dashboard</h1>
+
+    @if (isLoading()) {
+    <p class="empty-state">Yükleniyor...</p>
+    } @else if (stats(); as data) {
+    <div class="metrics-row">
+        <div class="metric">
+            <p class="metric-label">Toplam kaynak</p>
+            <p class="metric-value">{{ data.totalResources }}</p>
+        </div>
+        <div class="metric">
+            <p class="metric-label">Bugünkü rezervasyon</p>
+            <p class="metric-value">{{ data.todaysBookings }}</p>
+        </div>
+        <div class="metric">
+            <p class="metric-label">Bekleyen talep</p>
+            <p class="metric-value pending">{{ data.pendingRequests }}</p>
+        </div>
+    </div>
+
+    <app-card>
+        <h2>Kategoriye göre kullanım</h2>
+        @if (data.categoryUsage.length === 0) {
+        <p class="empty-state">Henüz veri yok.</p>
+        } @else {
+        <div class="usage-list">
+            @for (item of data.categoryUsage; track item.category) {
+            <div class="usage-row">
+                <p class="usage-label">{{ item.category }}</p>
+                <div class="usage-bar-track">
+                    <div class="usage-bar-fill" [style.width.%]="item.percentage"></div>
+                </div>
+                <p class="usage-percentage">%{{ item.percentage }}</p>
+            </div>
+            }
+        </div>
+        }
+    </app-card>
+
+    <app-card>
+        <h2>Sistem sağlığı</h2>
+        <div class="health-row">
+            <span class="health-dot"></span>
+            <p>Tüm servisler çalışıyor</p>
+        </div>
+    </app-card>
+    }
+</div>
