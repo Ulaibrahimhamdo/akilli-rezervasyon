@@ -1,0 +1,129 @@
+/**
+ * @description Ders Programi sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.recurring-schedule-page {
+    padding: 24px;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0 0 4px 0;
+    }
+}
+
+.page-subtitle {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+}
+
+app-card {
+    h2 {
+        font-size: var(--font-size-heading-2);
+        font-weight: var(--font-weight-heading-2);
+        color: var(--neutral-text-primary);
+        margin: 0 0 16px 0;
+    }
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    app-select,
+    app-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.field-label {
+    font-size: var(--font-size-caption);
+    color: var(--neutral-text-secondary);
+}
+
+.time-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+
+    >div {
+        flex: 1;
+    }
+}
+
+.time-input {
+    width: 100%;
+    height: 40px;
+    padding-inline: 12px;
+    border-radius: 8px;
+    background: var(--neutral-bg-page);
+    border: 1px solid var(--neutral-border);
+    color: var(--neutral-text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-body);
+    box-sizing: border-box;
+}
+
+.error-message {
+    font-size: var(--font-size-body-secondary);
+    color: var(--danger-text);
+    margin: 0 0 8px 0;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body-secondary);
+    padding: 20px 0;
+}
+
+.blocks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.block-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--neutral-bg-page);
+}
+
+.block-label {
+    font-size: var(--font-size-body);
+    color: var(--neutral-text-primary);
+    margin: 0;
+}
+
+.block-meta {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+}
+
+.icon-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--neutral-border);
+    background: var(--neutral-bg-card);
+    color: var(--neutral-text-secondary);
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+        color: var(--danger-text);
+        border-color: var(--danger-text);
+    }
+}
