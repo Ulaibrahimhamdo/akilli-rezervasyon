@@ -1,0 +1,68 @@
+/**
+ * @description Kullanicilar sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.users-page {
+    padding: 24px;
+    max-width: 720px;
+}
+
+.users-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 16px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    app-input {
+        width: 280px;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body-secondary);
+    padding: 40px 0;
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: var(--neutral-bg-card);
+    border: 1px solid var(--neutral-border);
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-name {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-label);
+    color: var(--neutral-text-primary);
+    margin: 0;
+}
+
+.user-email {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+}
