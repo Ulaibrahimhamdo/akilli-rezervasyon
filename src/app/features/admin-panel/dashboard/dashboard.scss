@@ -1,0 +1,125 @@
+/**
+ * @description Dashboard sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.dashboard-page {
+    padding: 24px;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0 0 4px 0;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body-secondary);
+    padding: 40px 0;
+}
+
+.metrics-row {
+    display: flex;
+    gap: 12px;
+}
+
+.metric {
+    flex: 1;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--neutral-bg-card);
+    border: 1px solid var(--neutral-border);
+}
+
+.metric-label {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0 0 4px 0;
+}
+
+.metric-value {
+    font-size: var(--font-size-heading-1);
+    font-weight: var(--font-weight-heading-1);
+    color: var(--neutral-text-primary);
+    margin: 0;
+
+    &.pending {
+        color: var(--warning-text);
+    }
+}
+
+app-card {
+    h2 {
+        font-size: var(--font-size-heading-2);
+        font-weight: var(--font-weight-heading-2);
+        color: var(--neutral-text-primary);
+        margin: 0 0 16px 0;
+    }
+}
+
+.usage-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.usage-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.usage-label {
+    font-size: var(--font-size-body);
+    color: var(--neutral-text-primary);
+    margin: 0;
+    width: 140px;
+    flex-shrink: 0;
+}
+
+.usage-bar-track {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--neutral-bg-page);
+    overflow: hidden;
+}
+
+.usage-bar-fill {
+    height: 100%;
+    background: var(--accent-solid);
+    border-radius: 4px;
+}
+
+.usage-percentage {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+    width: 40px;
+    text-align: right;
+}
+
+.health-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    p {
+        font-size: var(--font-size-body);
+        color: var(--neutral-text-primary);
+        margin: 0;
+    }
+}
+
+.health-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success-text);
+}
