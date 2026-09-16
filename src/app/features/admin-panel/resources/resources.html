@@ -1,1 +1,40 @@
-<p>resources works!</p>
+<div class="resources-page">
+    <div class="resources-header">
+        <h1>Kaynaklar</h1>
+        <app-button variant="primary" (buttonClick)="openAddModal()">+ Yeni kaynak</app-button>
+    </div>
+
+    <div class="filters-row">
+        <app-input placeholder="Kaynak ara" (valueChange)="onSearchChange($event)"></app-input>
+        <app-select placeholder="Tüm binalar" [options]="buildingOptions"
+            (valueChange)="onBuildingChange($event)"></app-select>
+    </div>
+
+    @if (isLoading()) {
+    <p class="empty-state">Yükleniyor...</p>
+    } @else if (filteredResources().length === 0) {
+    <p class="empty-state">Kayıtlı kaynak yok.</p>
+    } @else {
+    <div class="resources-list">
+        @for (resource of filteredResources(); track resource.id) {
+        <div class="resource-row">
+            <div class="resource-info">
+                <p class="resource-name">{{ resource.ad }}</p>
+                <p class="resource-meta">{{ resource.bina }} · Kapasite {{ resource.kapasite }}</p>
+            </div>
+            <div class="resource-actions">
+                <button class="icon-button edit" (click)="openEditModal(resource)">✎</button>
+                <button class="icon-button delete" (click)="requestDelete(resource)">🗑</button>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>
+
+<app-resource-form-modal [open]="formModalOpen()" [mode]="formModalMode()" [editingResource]="editingResource()"
+    (save)="handleFormSave($event)" (cancel)="closeFormModal()"
+    (deleteRequested)="requestDelete(editingResource()!)"></app-resource-form-modal>
+
+<app-delete-resource-modal [resource]="deletingResource()" (confirm)="confirmDelete()"
+    (cancel)="cancelDelete()"></app-delete-resource-modal>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { Resource } from '../../models/resource.model';
 
@@ -10,15 +10,53 @@ export interface ResourceStatusInfo {
   nextInfoText: string;
 }
 
+export const BINALAR = [
+  'Diş Hekimliği Fakültesi',
+  'Fen Edebiyat Fakültesi',
+  'Fizik Tedavi ve Rehabilitasyon Fakültesi',
+  'İktisadi ve İdari Bilimler Fakültesi',
+  'İlahiyat Fakültesi',
+  'Mühendislik ve Mimarlık Fakültesi',
+  'Sağlık Bilimleri Fakültesi',
+  'Spor Bilimleri Fakültesi',
+  'Veteriner Fakültesi',
+  'Ziraat Fakültesi',
+];
+
+export const KATEGORILER = [
+  'Laboratuvar',
+  'Konferans Salonu',
+  'Çalışma Alanı',
+  'Derslik',
+  'Toplantı Odası',
+];
+
 /**
  * @description Kaynak (Resource) servisi. Bolum kaynaklarinin "su an" durumunu
- * (bos/dolu/ders programi) hesaplamak icin, kaynaklar + periyotlar + gunun
- * onaylanmis rezervasyonlari + ders programi bloklarini birlestirir.
+ * (bos/dolu/ders programi) hesaplamanin yani sira, Admin Paneli icin
+ * kaynak listeleme, ekleme, guncelleme ve silme islemlerini icerir.
  */
 @Injectable({
   providedIn: 'root',
 })
 export class Resources {
+  async getAllResources(): Promise<Resource[]> {
+    const snapshot = await getDocs(collection(db, 'resources'));
+    return snapshot.docs.map((d) => ({ ...(d.data() as Resource), id: d.id }));
+  }
+
+  async createResource(data: Omit<Resource, 'id'>): Promise<void> {
+    await addDoc(collection(db, 'resources'), data);
+  }
+
+  async updateResource(id: string, data: Omit<Resource, 'id'>): Promise<void> {
+    await updateDoc(doc(db, 'resources', id), data);
+  }
+
+  async deleteResource(id: string): Promise<void> {
+    await deleteDoc(doc(db, 'resources', id));
+  }
+
   async getResourceStatuses(): Promise<ResourceStatusInfo[]> {
     const today = new Date();
     const todayDateStr = this.formatDate(today);
