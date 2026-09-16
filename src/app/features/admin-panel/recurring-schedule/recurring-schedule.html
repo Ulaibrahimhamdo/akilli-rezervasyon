@@ -1,1 +1,59 @@
-<p>recurring-schedule works!</p>
+<div class="recurring-schedule-page">
+    <h1>Ders programı</h1>
+    <p class="page-subtitle">Bu bloklar kaynağın takviminde otomatik "dolu" görünür.</p>
+
+    <app-card>
+        <h2>Yeni blok ekle</h2>
+
+        <div class="add-form">
+            <label class="field-label">Kaynak</label>
+            <app-select placeholder="Kaynak seçin" [options]="resourceOptions()" [value]="selectedResourceId"
+                (valueChange)="onResourceChange($event)"></app-select>
+
+            <label class="field-label">Gün</label>
+            <app-select placeholder="Gün seçin" [options]="dayOptions" [(value)]="selectedDay"></app-select>
+
+            <div class="time-row">
+                <div>
+                    <label class="field-label">Başlangıç</label>
+                    <input type="time" class="time-input" [(ngModel)]="startTime" />
+                </div>
+                <div>
+                    <label class="field-label">Bitiş</label>
+                    <input type="time" class="time-input" [(ngModel)]="endTime" />
+                </div>
+            </div>
+
+            <label class="field-label">Etiket</label>
+            <app-input placeholder="Örn: Veri Yapıları Dersi" [(value)]="etiket"></app-input>
+
+            @if (errorMessage()) {
+            <p class="error-message">{{ errorMessage() }}</p>
+            }
+
+            <app-button variant="primary" (buttonClick)="addBlock()">Bloğu ekle</app-button>
+        </div>
+    </app-card>
+
+    @if (selectedResourceId) {
+    <app-card>
+        <h2>Mevcut bloklar</h2>
+
+        @if (blocksForResource().length === 0) {
+        <p class="empty-state">Bu kaynak için henüz blok yok.</p>
+        } @else {
+        <div class="blocks-list">
+            @for (block of blocksForResource(); track block.id) {
+            <div class="block-row">
+                <div>
+                    <p class="block-label">{{ block.label }}</p>
+                    <p class="block-meta">{{ blockDescription(block) }}</p>
+                </div>
+                <button class="icon-button" (click)="deleteBlock(block.id)">🗑</button>
+            </div>
+            }
+        </div>
+        }
+    </app-card>
+    }
+</div>
