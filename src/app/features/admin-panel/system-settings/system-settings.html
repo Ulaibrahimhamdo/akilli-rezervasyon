@@ -1,1 +1,45 @@
-<p>system-settings works!</p>
+<div class="system-settings-page">
+    <h1>Sistem Ayarları</h1>
+    <p class="page-subtitle">Kampüs genelinde geçerli kurallar</p>
+
+    @if (isLoading()) {
+    <p class="empty-state">Yükleniyor...</p>
+    } @else {
+    <app-card>
+        <h2>Aylık rezervasyon limiti</h2>
+        <p class="card-description">Bir kullanıcının bir ay içinde oluşturabileceği maksimum onaylı/bekleyen talep
+            sayısı</p>
+        <div class="input-row">
+            <input type="number" class="settings-input" [(ngModel)]="monthlyLimit" />
+            <span class="unit-label">rezervasyon / ay</span>
+        </div>
+    </app-card>
+
+    <app-card>
+        <h2>Yönetici cevap süresi</h2>
+        <p class="card-description">Rezervasyon başlangıcına bu kadar saat kalınca kilit ekranı devreye girer</p>
+        <div class="input-row">
+            <input type="number" class="settings-input" [(ngModel)]="managerResponseHours" />
+            <span class="unit-label">saat</span>
+        </div>
+    </app-card>
+
+    <app-card>
+        <h2>İptal son süresi</h2>
+        <p class="card-description">Rezervasyon başlangıcına bu kadar saatten az kalınca iptal butonu devre dışı kalır
+        </p>
+        <div class="input-row">
+            <input type="number" class="settings-input" [(ngModel)]="cancelDeadlineHours" />
+            <span class="unit-label">saat</span>
+        </div>
+    </app-card>
+
+    @if (saveMessage()) {
+    <p class="save-message">{{ saveMessage() }}</p>
+    }
+
+    <app-button variant="primary" [disabled]="isSaving()" (buttonClick)="save()">
+        {{ isSaving() ? 'Kaydediliyor...' : 'Kaydet' }}
+    </app-button>
+    }
+</div>

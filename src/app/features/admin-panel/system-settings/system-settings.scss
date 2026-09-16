@@ -1,0 +1,76 @@
+/**
+ * @description Sistem Ayarlari sayfasinin stilleri. Koyu tema _tokens.scss degiskenlerini kullanir.
+ */
+
+.system-settings-page {
+    padding: 24px;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        font-weight: var(--font-weight-heading-1);
+        color: var(--neutral-text-primary);
+        margin: 0 0 4px 0;
+    }
+}
+
+.page-subtitle {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--neutral-text-muted);
+    font-size: var(--font-size-body-secondary);
+    padding: 40px 0;
+}
+
+app-card {
+    h2 {
+        font-size: var(--font-size-heading-2);
+        font-weight: var(--font-weight-heading-2);
+        color: var(--neutral-text-primary);
+        margin: 0 0 4px 0;
+    }
+}
+
+.card-description {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+    margin: 0 0 12px 0;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-input {
+    width: 100px;
+    height: 40px;
+    padding-inline: 12px;
+    border-radius: 8px;
+    background: var(--neutral-bg-page);
+    border: 1px solid var(--neutral-border);
+    color: var(--neutral-text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-body);
+    box-sizing: border-box;
+}
+
+.unit-label {
+    font-size: var(--font-size-body-secondary);
+    color: var(--neutral-text-secondary);
+}
+
+.save-message {
+    font-size: var(--font-size-body-secondary);
+    color: var(--success-text);
+    margin: 0;
+}
