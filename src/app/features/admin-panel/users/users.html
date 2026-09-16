@@ -1,1 +1,26 @@
-<p>users works!</p>
+<div class="users-page">
+    <div class="users-header">
+        <h1>Kullanıcılar</h1>
+        <app-input placeholder="İsim veya e-posta ara" (valueChange)="onSearchChange($event)"></app-input>
+    </div>
+
+    @if (isLoading()) {
+    <p class="empty-state">Yükleniyor...</p>
+    } @else if (filteredUsers().length === 0) {
+    <p class="empty-state">Kullanıcı bulunamadı.</p>
+    } @else {
+    <div class="users-list">
+        @for (user of filteredUsers(); track user.uid) {
+        <div class="user-row">
+            <app-avatar [role]="user.role" [name]="user.adSoyad"></app-avatar>
+            <div class="user-info">
+                <p class="user-name">{{ user.adSoyad }}</p>
+                <p class="user-email">{{ user.email }}</p>
+            </div>
+            <app-select [options]="roleOptions" [value]="user.role"
+                (valueChange)="onRoleChange(user, $event)"></app-select>
+        </div>
+        }
+    </div>
+    }
+</div>

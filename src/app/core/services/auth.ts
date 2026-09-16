@@ -6,7 +6,7 @@ import {
   sendPasswordResetEmail,
   updatePassword,
 } from 'firebase/auth';
-import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, getDocs, updateDoc, collection } from 'firebase/firestore';
 import { auth as firebaseAuth, db } from '../firebase.config';
 import { User, UserRole } from '../../models/user.model';
 
@@ -64,5 +64,13 @@ export class Auth {
       throw new Error('Kullanıcı giriş yapmamış.');
     }
     await updatePassword(currentUser, newPassword);
+  }
+  async getAllUsers(): Promise<User[]> {
+    const snapshot = await getDocs(collection(db, 'users'));
+    return snapshot.docs.map((d) => d.data() as User);
+  }
+
+  async updateUserRole(uid: string, role: UserRole): Promise<void> {
+    await updateDoc(doc(db, 'users', uid), { role });
   }
 }
